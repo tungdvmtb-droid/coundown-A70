@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body { margin: 0; background: #004b87; font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; }
+  .wrap { text-align: center; }
+  .label { color: #fff; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 8px; }
+  .boxes { display: flex; gap: 8px; }
+  .box { background: #fff; border-radius: 4px; padding: 10px 8px; width: 60px; }
+  .num { color: #004b87; font-size: 28px; font-weight: bold; display: block; }
+  .unit { color: #64748b; font-size: 10px; font-weight: bold; text-transform: uppercase; display: block; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="label">Thời gian đến Lễ chính 27/06</div>
+  <div class="boxes">
+    <div class="box"><span class="num" id="d">00</span><span class="unit">Ngày</span></div>
+    <div class="box"><span class="num" id="h">00</span><span class="unit">Giờ</span></div>
+    <div class="box"><span class="num" id="m">00</span><span class="unit">Phút</span></div>
+    <div class="box"><span class="num" id="s">00</span><span class="unit">Giây</span></div>
+  </div>
+</div>
+<script>
+var t = new Date('2026-06-27T00:00:00').getTime();
+function p(n){return n<10?'0'+n:''+n;}
+function u(){
+  var diff = t - Date.now();
+  if(diff<0)diff=0;
+  document.getElementById('d').innerHTML=p(Math.floor(diff/86400000));
+  document.getElementById('h').innerHTML=p(Math.floor((diff%86400000)/3600000));
+  document.getElementById('m').innerHTML=p(Math.floor((diff%3600000)/60000));
+  document.getElementById('s').innerHTML=p(Math.floor((diff%60000)/1000));
+}
+u(); setInterval(u,1000);
+</script>
+</body>
+</html>
